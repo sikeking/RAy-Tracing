@@ -67,5 +67,8 @@ Vec3 cross(const Vec3& v,const Vec3& u){
 Vec3 normalize(const Vec3& v){
     return v / v.length();
 }
+Vec3 reflect(const Vec3& d, const Vec3& n){
+    return d - 2*dot(d, n)*n;;
+}
 
 #endif

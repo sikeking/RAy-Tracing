@@ -39,6 +39,18 @@ class Image{
             }
         }
     }
+
+    void gamma_correction() const {
+        for(int i = 0; i < width; i++) {
+            for(int j = 0; j < height; j++) {
+                Vec3 col = this->getPixel(i, j);
+                col.x = std::pow(col.x, 1.0/2.2);
+                col.y = std::pow(col.y, 1.0/2.2);
+                col.z = std::pow(col.z, 1.0/2.2);
+                this->setPixel(i, j, col);
+            }
+        }
+    }
 };
 
 #endif

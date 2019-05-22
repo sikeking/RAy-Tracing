@@ -8,10 +8,11 @@ class Ellipse : public Figure {
     public:
         Vec3 center;
         Vec3 axis;
-        const Vec3 color;
+        Vec3 color;
+        int material;
 
-        Ellipse(const Vec3& center,const Vec3& axis,Vec3 color):
-            center(center),axis(axis),color(color){}
+        Ellipse(const Vec3& center,const Vec3& axis,Vec3 color, int material):
+            center(center),axis(axis),color(color),material(material){}
     
     bool intersect(const Ray& ray,Hit& hit) const override{
         double a = (ray.direction/axis).length2();
@@ -36,6 +37,7 @@ class Ellipse : public Figure {
         hit.hitPos = ray.origin + t*ray.direction;
         hit.hitNormal = normalize((ray.origin + t*ray.direction-center)*axis);
         hit.hitColor = color;
+        hit.hitMaterial = material;
         return true;
 
     }

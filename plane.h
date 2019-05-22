@@ -9,7 +9,7 @@ class Plane : public Figure{
         const Vec3 color;
         const int material;
 
-    Plane(const Vec3 Base_Point,const Vec3 Normal_direction,const Vec3 color, const int material):
+    Plane(const Vec3& Base_Point,const Vec3& Normal_direction,const Vec3& color, const int material):
         Base_Point(Base_Point),Normal_direction(Normal_direction),color(color),material(material){}
 
     bool intersect(const Ray& ray, Hit& hit) const override {

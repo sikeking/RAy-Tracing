@@ -9,12 +9,13 @@
 
 class Sphere : public Figure {
     public:
-    Vec3 center;
-    double radius;
-    const Vec3 color;
+        Vec3 center;
+        double radius;
+        const Vec3 color;
+        const int material;
 
-    Sphere(const Vec3& center, double radius, Vec3 color):
-        center(center),radius(radius),color(color){}
+    Sphere(const Vec3& center, double radius, Vec3 color,const int material):
+        center(center),radius(radius),color(color),material(material){}
     
     bool intersect(const Ray& ray,Hit& hit) const override{
         double a = ray.direction.length2();
@@ -39,6 +40,7 @@ class Sphere : public Figure {
         hit.hitPos = ray.origin + t*ray.direction;
         hit.hitNormal = normalize(hit.hitPos - center);
         hit.hitColor = color;
+        hit.hitMaterial = material;
         return true;
 
     }
