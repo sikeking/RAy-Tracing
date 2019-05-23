@@ -6,12 +6,12 @@
 
 class Ellipse : public Figure {
     public:
-        Vec3 center;
-        Vec3 axis;
-        Vec3 color;
-        int material;
+        const Vec3 center;
+        const Vec3 axis;
+        const Vec3 color;
+        const int material;
 
-        Ellipse(const Vec3& center,const Vec3& axis,Vec3 color, int material):
+        Ellipse(const Vec3& center,const Vec3& axis,const Vec3& color,const int material):
             center(center),axis(axis),color(color),material(material){}
     
     bool intersect(const Ray& ray,Hit& hit) const override{
@@ -35,7 +35,7 @@ class Ellipse : public Figure {
 
         hit.t = t;
         hit.hitPos = ray.origin + t*ray.direction;
-        hit.hitNormal = normalize((ray.origin + t*ray.direction-center)*axis);
+        hit.hitNormal = normalize((hit.hitPos-center)/(axis * axis));
         hit.hitColor = color;
         hit.hitMaterial = material;
         return true;
